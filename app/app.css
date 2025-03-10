@@ -1,15 +1,40 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Solway", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-html,
-body {
-  @apply bg-white dark:bg-gray-950;
+@layer base {
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+  html,
+  body {
+    @apply bg-white dark:bg-gray-950;
+
+    @media (prefers-color-scheme: dark) {
+      color-scheme: dark;
+    }
+
+    .prose-container {
+      @apply prose dark:prose-invert sm:prose-sm lg:prose-lg xl:prose-xl 2xl:prose-2xl;
+    }
+  }
+
+  body {
+    --size: .5px;
+    background-image:
+      radial-gradient(rgba(0, 0, 0, .15) var(--size), transparent var(--size)),
+      radial-gradient(rgba(0, 255, 0, 0.5) var(--size), transparent var(--size));
+    background-size: calc(20 * var(--size)) calc(20 * var(--size));
+    background-position: 0 0, calc(10 * var(--size)) calc(10 * var(--size));
+  }
+
+  /**
+   * Smooth the transition between pages in browsers that supports it.
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition
+   */
+  @view-transition {
+    navigation: auto;
   }
 }

@@ -1,7 +1,9 @@
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
+  NavLink,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -19,21 +21,28 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&display=swap"
   },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="h-full flex flex-col items-center">
+        <div className="h-full p-4 bg-[rgba(255,255,255,.25)]">
+          <header className="flex flex-row gap-2 mb-16">
+            <div className="flex-1" />
+            <NavLink className={({ isActive }) => `p-2 text-2xl ${isActive ? "bg-green-200" : ""}`} to="/" children="Home" />
+            <NavLink className={({ isActive }) => `p-2 text-2xl ${isActive ? "bg-green-200" : ""}`} to="/blog" children="Blog" />
+          </header>
+          <main className="p-2">{children}</main>
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
