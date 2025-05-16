@@ -1,4 +1,4 @@
-# EmmamanuelOga.com
+# Blog
 
 My website built with ReactRouter v7.
 
